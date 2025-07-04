@@ -44,7 +44,7 @@ function Me() {
 					</Button>
 				</div>
 				
-          <EditUserProfileForm/>  
+          <EditUserProfileForm closeModal={closeModal}/>  
               
 			</Modal>
 

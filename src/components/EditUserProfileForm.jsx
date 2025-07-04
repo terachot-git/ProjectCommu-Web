@@ -1,8 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Button from './Button'; 
-
-function EditUserProfileForm() {
+import { userApi } from '../api/userapi';
+import useUserStore from '../stores/userStore';
+function EditUserProfileForm({closeModal}) {
+  const token = useUserStore(state=>state.token)
+  const fecthUser = useUserStore(state=>state.actionfecthuser)
   const [myFile, setMyFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -32,7 +35,22 @@ function EditUserProfileForm() {
     setMyFile(null);
     setPreview(null);
   };
-  
+  const saveFile = async (e)=>{
+       e.stopPropagation(); 
+      const body = new FormData()
+			
+			 
+				body.append('image', myFile)
+			
+      const res = await userApi.patch("/me",body, {headers: {
+      Authorization: `Bearer ${token}`,
+    },
+      
+  })
+       console.log(res)
+       fecthUser()
+       closeModal()
+  }
   // ไม่จำเป็นต้องใช้ useEffect สำหรับสร้าง preview แล้ว เพราะเราทำใน onDrop
   // แต่ยังคงไว้เผื่อกรณีที่ต้องการโหลดรูปเริ่มต้นจาก props ในอนาคต
   useEffect(() => {
@@ -72,10 +90,7 @@ function EditUserProfileForm() {
              
                 <div className='w-fit'>
                    <Button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      alert('บันทึกรูปภาพ!'); 
-                    }}
+                    onClick={saveFile}
                     
                     size='md'
                   >
