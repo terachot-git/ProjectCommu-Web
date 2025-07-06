@@ -21,7 +21,7 @@ function SidebarUser() {
 				<Link to="/" className="w-full hover:bg-gray-200 p-2 h-[64]">
 					<div className="flex items-center">
 						<HomeIcon className="w-12 h-12 " />
-						<p className="font-bold text-2xl px-2">Home</p>
+						{user?<p className="font-bold text-2xl px-2">Home</p>:<p className="font-bold text-2xl px-2">login</p>}
 					</div>
 				</Link>
 				<div className="border-t border-gray-300 "></div>
@@ -29,19 +29,20 @@ function SidebarUser() {
 					<div className="flex  flex-col items-start">
 						<p className="font-bold text-3xl px-2 pb-4">Moderation</p>
 
-						<div onClick={openModal} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
+						{user&&<div onClick={openModal} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
+						
 							<div className="flex items-center ">
 								<PlusIcon className="w-10 h-10 " />
-								<p className="font-bold text-2xl px-2">Create comunity</p>
+								<p className="font-bold text-2xl px-2">Create community</p>
 							</div>
-						</div>
+						</div>}
 						{commu.map(el => {
 								if (el.role == 'ADMIN' || el.role == 'MODERATOR') {
 									console.log(el)
 									return (
-										<div key={el.community.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
+										<div key={el?.community?.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
 										<Link>
-										<ProfilecCommu src={el.community?.communityIcon} community={el.community} size="sm" textsize="md" />
+										<ProfilecCommu src={el?.community?.communityIcon} community={el?.community} size="sm" textsize="md" />
 										</Link>
 										</div>
 									)
@@ -58,9 +59,9 @@ function SidebarUser() {
 								 
 									console.log(el)
 									return (
-										<div key={el.community.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
+										<div key={el?.community?.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
 										<Link>
-										<ProfilecCommu  src={el.community?.communityIcon} community={el.community} size="sm" textsize="md" />
+										<ProfilecCommu  src={el.community?.communityIcon} community={el?.community} size="sm" textsize="md" />
 										</Link>
 										</div>
 									)

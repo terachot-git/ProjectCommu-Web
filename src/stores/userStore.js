@@ -5,7 +5,7 @@ import { userApi } from '../api/userapi'
 const useUserStore = create(persist((set, get) => ({
 	user: null,
 	token: '',
-	commu:null,
+	commu:[],
 	actionfecthCommu:async () =>{
 		 const token = get().token; 
             if (!token) return;
@@ -31,7 +31,7 @@ const useUserStore = create(persist((set, get) => ({
 		set({ token: rs.data.token, user: rs.data.user })
 		return rs
 	},
-	logout: () => set({ token: '', user: null })
+	logout: () => set({ token: '', user: null ,commu:[]})
 }), {
 	name: 'userState',
 	storage: createJSONStorage(() => localStorage)

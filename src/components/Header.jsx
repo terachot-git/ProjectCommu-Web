@@ -11,7 +11,7 @@ function Header () {
     <>
     <div className="z-10 flex justify-items-center justify-between px-4 py-1 bg-violet-50 w-screen fixed">
       <Weblogo className="w-49 h-16"/>
-       <AvataDropdown src={user.profileImage} ring="active"/>
+      {user&& <AvataDropdown src={user.profileImage} ring="active"/>} 
      
     
    
