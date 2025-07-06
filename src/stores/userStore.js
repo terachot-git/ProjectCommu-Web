@@ -5,6 +5,17 @@ import { userApi } from '../api/userapi'
 const useUserStore = create(persist((set, get) => ({
 	user: null,
 	token: '',
+	commu:null,
+	actionfecthCommu:async () =>{
+		 const token = get().token; 
+            if (!token) return;
+		const rs = await userApi.get('/community', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			}
+		})
+		set({commu: rs.data.commu })
+	},
 	actionfecthuser: async () => {
 		 const token = get().token; 
             if (!token) return;

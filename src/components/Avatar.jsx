@@ -28,7 +28,7 @@ const ringClasses = {
   return (
     <div
       className={`
-        relative inline-flex items-center justify-center rounded-full bg-gray-200 text-gray-600 
+        relative shrink-0 rounded-full bg-gray-200 text-gray-600 
         ${sizeClasses[size]} ${ringClasses[ring]}
       `}
     >

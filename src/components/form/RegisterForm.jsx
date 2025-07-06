@@ -1,16 +1,15 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { registerSchema } from '../utils/validators'
-// import useUserStore from '../stores/userStore'
+import { registerSchema } from '../../utils/validators'
 import { toast } from 'react-toastify'
 import { Loader } from 'lucide-react'
-import Button from './Button'
-import { authApi } from '../api/authapi'
+import Button from '../Button'
+import { authApi } from '../../api/authapi'
 function RegisterForm({close}) {
 
 	
 const { handleSubmit, register, formState: { errors, isSubmitting }, reset, } = useForm({
-        resolver: yupResolver(registerSchema),
+        mode: 'onChange',resolver: yupResolver(registerSchema),
     }) 
     console.log(close)
     const hdlRegister = async data => {
@@ -35,7 +34,7 @@ const { handleSubmit, register, formState: { errors, isSubmitting }, reset, } = 
   return (
     <div className='flex flex-1  '>
 						<div className="bg-base-100 w-full h-fit shadow-xl  mt-8 mx-8 px-4 py-6  bg-violet-50 ">
-							<form onSubmit={handleSubmit(hdlRegister)} >
+							<form  >
 								<fieldset disabled={isSubmitting} >
 									<div className="flex gap-2 flex-col ">
 										<input type='text'
@@ -60,7 +59,7 @@ const { handleSubmit, register, formState: { errors, isSubmitting }, reset, } = 
 										{!errors.confirmPassword?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
 										{errors.confirmPassword?.message && <p className='text-xs text-red-500'>{errors.confirmPassword.message}</p>}
 
-										{!isSubmitting && <div className='self-end'><Button>Register</Button></div>}
+										{!isSubmitting && <div className='self-end'><Button onClick={handleSubmit(hdlRegister)}>Register</Button></div>}
 										{isSubmitting && <div className='self-end'><Button>
 											<div className='flex'> 
 												<span>Register</span>

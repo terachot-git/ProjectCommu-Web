@@ -1,4 +1,4 @@
-import SidebarUser from "../components/SidebarUser"
+import SidebarUser from "../components/sidebar/SidebarUser"
 
 function Home() {
   return (

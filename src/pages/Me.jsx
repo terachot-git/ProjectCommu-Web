@@ -2,11 +2,13 @@ import { useState } from "react"
 import Button from "../components/Button"
 import Modal from 'react-modal';
 import Profile from "../components/Profile"
-import SidebarUser from "../components/SidebarUser"
+import SidebarUser from "../components/sidebar/SidebarUser"
 import useUserStore from "../stores/userStore"
-import EditUserProfileForm from "../components/EditUserProfileForm";
+import EditUserProfileForm from "../components/form/EditUserProfileForm";
 function Me() {
   const user = useUserStore(state => state.user)
+    const token = useUserStore(state => state.token)
+    console.log(token)
     const [modalIsOpen, setModalIsOpen] = useState(false);
      
     const openModal = () => setModalIsOpen(true);
@@ -15,7 +17,7 @@ function Me() {
     
     <>
       <SidebarUser />
-      <div className="w-10/16 top-[78px] relative h-50  mx-auto h-full ">
+      <div className="w-10/16 top-[78px] relative   mx-auto h-full ">
         <div className="pt-6 px-28 flex items-center justify-between">
           <Profile size="lg" user={user} textsize="lg" src={user.profileImage} />
           <div className="w-46 relative top-1 ">
@@ -32,9 +34,10 @@ function Me() {
       <Modal
 				isOpen={modalIsOpen}
 				onRequestClose={closeModal}
-			    shouldCloseOnOverlayClick={false}
-
-				overlayClassName="fixed  backdrop-blur-sm inset-0   flex justify-center items-center z-50"
+			  shouldCloseOnOverlayClick={false}
+        contentLabel="Update Profile Process"
+				ariaHideApp={false}
+				overlayClassName="fixed  backdrop-blur-sm inset-0   flex justify-center items-center z-30"
 			
 				className="bg-white rounded-lg shadow-xl p-6 pb-20 w-full max-w-md outline-none backdrop-blur-sm flex flex-col"
 			>

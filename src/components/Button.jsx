@@ -21,7 +21,8 @@ const Button = ({ children, bgColor = '#5E00FF', textColor = '#ffffff', onClick 
     ${sizeClasses[size]} 
     shadow-md 
     focus:ring-2
-    w-full
+    w-fit
+    mx-2
     hover:cursor-pointer
     focus:ring-opacity-75
     transition-colors
@@ -33,6 +34,7 @@ const Button = ({ children, bgColor = '#5E00FF', textColor = '#ffffff', onClick 
 
   return (
     <button
+      type="button"
       className={buttonClasses.trim()}
       style={buttonStyles}
       onClick={onClick}

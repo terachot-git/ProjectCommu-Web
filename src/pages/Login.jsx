@@ -8,18 +8,18 @@ import { Weblogo } from '../icons'
 import Button from '../components/Button'
 import { useState } from 'react'
 import Modal from 'react-modal';
-import RegisterForm from '../components/RegisterForm'
+import RegisterForm from '../components/form/RegisterForm'
 import useUserStore from '../stores/userStore'
 function Login() {
-    const login = useUserStore(state=>state.login)
-	const user = useUserStore(state => state.user)
+	const login = useUserStore(state => state.login)
 	const [modalIsOpen, setModalIsOpen] = useState(false);
-   
+    const token = useUserStore(state=>state.token)
+	const fetchcommu = useUserStore(state=>state.actionfecthCommu)
 	const openModal = () => setModalIsOpen(true);
 	const closeModal = () => setModalIsOpen(false);
 
-	const { handleSubmit, register, formState: { errors, isSubmitting }, reset } = useForm({
-		resolver: yupResolver(loginSchema),
+	const { handleSubmit, register, formState: { errors, isSubmitting } } = useForm({
+		mode: 'onChange',resolver: yupResolver(loginSchema),
 	})
 
 	const hdlLogin = async data => {
@@ -28,15 +28,16 @@ function Login() {
 			console.log(data)
 			await new Promise(resolve => setTimeout(resolve, 1000))
 			const resp = await login(data)
+             await fetchcommu(token)
 			toast.success(resp.data.message)
-		    // await toast.success(`Welcom ${user.username}`)
-			
+			// await toast.success(`Welcom ${user.username}`)
+
 		} catch (err) {
 			const errMsg = err.response?.data?.error || err.message
 			toast(errMsg)
 		}
 	}
-	
+
 
 	return (
 		<>  <div className='h-screen bg-gray-200'>
@@ -44,7 +45,7 @@ function Login() {
 				<div className="p-5 mx-auto max-w-screen-lg min-h-[540px] flex justify-between max-md:flex-col ">
 					<div className='flex flex-1  '>
 						<div className="bg-base-100 w-full h-fit shadow-xl  mt-8 mx-8 px-4 py-6 flex flex-col bg-violet-50 ">
-							<form onSubmit={handleSubmit(hdlLogin)} >
+							<form  >
 								<fieldset disabled={isSubmitting} >
 									<div className="flex gap-2 flex-col ">
 										<input type='text'
@@ -52,16 +53,16 @@ function Login() {
 											placeholder='Username'
 											{...register('username')}
 										/>
-										{!errors.username?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
+										{!errors.username?.message && <p className='text-xs text-transparent select-none'>placeholder</p>}
 										{errors.username?.message && <p className='text-xs text-red-500'>{errors.username.message}</p>}
 										<input type='password'
 											className='input w-full h-8 px-2 bg-gray-100 shadow-md '
 											placeholder='password'
 											{...register('password')}
 										/>
-										{!errors.password?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
+										{!errors.password?.message && <p className='text-xs text-transparent select-none'>placeholder</p>}
 										{errors.password?.message && <p className='text-xs text-red-500'>{errors.password.message}</p>}
-										{!isSubmitting && <div className='self-end'><Button>Login</Button></div>}
+										{!isSubmitting && <div className='self-end'><Button onClick={handleSubmit(hdlLogin)}>Login</Button></div>}
 										{isSubmitting && <div className='self-end'><Button>
 											<div className='flex'>
 												<span>Login</span>
@@ -96,10 +97,11 @@ function Login() {
 			<Modal
 				isOpen={modalIsOpen}
 				onRequestClose={closeModal}
-			    shouldCloseOnOverlayClick={false}
+				shouldCloseOnOverlayClick={false}
+				contentLabel="Register Process"
+				ariaHideApp={false}
+				overlayClassName="fixed  backdrop-blur-sm inset-0   flex justify-center items-center z-30"
 
-				overlayClassName="fixed  backdrop-blur-sm inset-0   flex justify-center items-center z-50"
-			
 				className="bg-white rounded-lg shadow-xl p-6 pb-20 w-full max-w-md outline-none backdrop-blur-sm flex flex-col"
 			>
 				<div className='self-end  '>
@@ -107,9 +109,9 @@ function Login() {
 						ปิด
 					</Button>
 				</div>
-				
-                <RegisterForm close={closeModal}/>
-              
+
+				<RegisterForm close={closeModal} />
+
 			</Modal>
 
 

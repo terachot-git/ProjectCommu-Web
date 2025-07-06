@@ -1,25 +1,25 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Button from './Button'; 
-import { userApi } from '../api/userapi';
-import useUserStore from '../stores/userStore';
+import Button from '../Button'; 
+import { userApi } from '../../api/userapi';
+import useUserStore from '../../stores/userStore';
+import LoadingModal from '../modal/LoadingModal';
 function EditUserProfileForm({closeModal}) {
   const token = useUserStore(state=>state.token)
   const fecthUser = useUserStore(state=>state.actionfecthuser)
   const [myFile, setMyFile] = useState(null);
   const [preview, setPreview] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const onDrop = useCallback(acceptedFiles => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       const file = acceptedFiles[0];
       setMyFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(file);
+         if (preview) {
+              URL.revokeObjectURL(preview);
+            }
+      setPreview(URL.createObjectURL(file))
     }
-  }, []);
+  }, [preview]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -32,11 +32,16 @@ function EditUserProfileForm({closeModal}) {
 
   const removeFile = (e) => {
     e.stopPropagation(); 
+      if (preview) {
+            URL.revokeObjectURL(preview);
+          }
     setMyFile(null);
     setPreview(null);
   };
   const saveFile = async (e)=>{
-       e.stopPropagation(); 
+     setIsLoading(true);
+    try {
+        e.stopPropagation(); 
       const body = new FormData()
 			
 			 
@@ -48,19 +53,24 @@ function EditUserProfileForm({closeModal}) {
       
   })
        console.log(res)
-       fecthUser()
-       closeModal()
-  }
-  // ไม่จำเป็นต้องใช้ useEffect สำหรับสร้าง preview แล้ว เพราะเราทำใน onDrop
-  // แต่ยังคงไว้เผื่อกรณีที่ต้องการโหลดรูปเริ่มต้นจาก props ในอนาคต
-  useEffect(() => {
-    if (!myFile) {
-      setPreview(null);
+      await fecthUser()
+     
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }finally{
+      setIsLoading(false);
+     if (preview) {
+            URL.revokeObjectURL(preview);
+          }
+     setMyFile(null);
+     setPreview(null);
+    closeModal()
     }
-  }, [myFile]);
+     
+  }
 
   return (
-    <div>
+    <>
   
       <div
         {...getRootProps()}
@@ -74,7 +84,7 @@ function EditUserProfileForm({closeModal}) {
             <img
               src={preview}
               alt="พรีวิวรูปภาพ"
-              className="w-48 h-48 object-cover rounded-full shadow-md"
+              className="w-36 h-36 object-cover rounded-full shadow-md"
             />
             <p className="text-gray-500 text-sm mt-4">ลากไฟล์อื่นมาวาง หรือคลิกเพื่อเปลี่ยนรูป</p>
              <div className='flex gap-2 justify-center mt-4'>
@@ -110,7 +120,8 @@ function EditUserProfileForm({closeModal}) {
           </div>
         )}
       </div>
-    </div>
+        <LoadingModal isOpen={isLoading}/>
+    </>
   );
 }
 
