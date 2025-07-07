@@ -6,11 +6,12 @@ const useCommuStore = create(persist((set, get) => ({
     member:[],
     memberrole:[],
     actionfecthinfo: async (communityname,token) => {
-            const rs = await communityApi.get(`/:${communityname}`, {
+            const rs = await communityApi.get(`/${communityname}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
             })
+            // console.log(rs)
             set({community: rs.data.community , member:rs.data.member,memberrole:rs.data.memberrole})
         },
    

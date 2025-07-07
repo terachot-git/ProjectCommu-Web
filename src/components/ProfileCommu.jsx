@@ -4,12 +4,15 @@ const sizeClasses = {
   md: 'px-2 text-3xl',
   lg: 'px-4 text-6xl',
 };
-
-function ProfilecCommu({community,textsize="md",...resProps}) {
+const shadowActive = {
+  active : "text-shadow-[-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white,2px_2px_0_white]", 
+  none : ""
+}
+function ProfilecCommu({community,textsize="md",shadow='none',...resProps}) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center z-20">
         <Avatar {...resProps}/>
-        <p className= {`${sizeClasses[textsize]} font-bold `}>{community?.communityname}</p>
+        <p className= {`${sizeClasses[textsize]} font-bold ${shadowActive[shadow]}  `}>{community?.communityname}</p>
     </div>
   )
 }

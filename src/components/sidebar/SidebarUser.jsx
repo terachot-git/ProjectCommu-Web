@@ -8,8 +8,8 @@ function SidebarUser() {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const user = useUserStore(state => state.user)
 	const commu = useUserStore(state => state.commu)
-	console.log(user)
-	console.log(commu)
+	// console.log(user)
+	// console.log(commu)
 	const openModal = (e) => {
 		e.stopPropagation();
 		setModalIsOpen(true);
@@ -38,10 +38,10 @@ function SidebarUser() {
 						</div>}
 						{commu.map(el => {
 								if (el.role == 'ADMIN' || el.role == 'MODERATOR') {
-									console.log(el)
+									// console.log(el)
 									return (
 										<div key={el?.community?.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
-										<Link>
+										<Link  to={`/commu/${el?.community?.communityname}`}>
 										<ProfilecCommu src={el?.community?.communityIcon} community={el?.community} size="sm" textsize="md" />
 										</Link>
 										</div>
@@ -57,10 +57,10 @@ function SidebarUser() {
 						<p className="font-bold text-3xl px-2 pb-4">Community</p>
 						{commu.map(el => {
 								 
-									console.log(el)
+									// console.log(el)
 									return (
 										<div key={el?.community?.id} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
-										<Link>
+										<Link to={`/commu/${el?.community?.communityname}`}>
 										<ProfilecCommu  src={el.community?.communityIcon} community={el?.community} size="sm" textsize="md" />
 										</Link>
 										</div>

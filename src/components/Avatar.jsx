@@ -9,7 +9,7 @@ const sizeClasses = {
 
 const ringClasses = {
   none: 'hover:ring-0',
-  active: 'hover:ring-2',
+  active: 'hover:ring-5',
   
 };
 
@@ -37,7 +37,7 @@ const ringClasses = {
         <img
           src={src}
           alt={alt}
-          className="h-full w-full object-cover rounded-full"
+          className="h-full w-full object-cover rounded-full ring-2 ring-white"
         />
       
     </div>

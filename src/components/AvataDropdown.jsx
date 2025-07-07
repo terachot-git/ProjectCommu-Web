@@ -6,7 +6,7 @@ function AvataDropdown({...resProps}) {
   
     const logout = useUserStore(state=>state.logout)
     return (
-        <Menu as="div" className="relative inline-block text-left ">
+        <Menu as="div" className="relative inline-block text-left">
 
             <MenuButton className="hover:cursor-pointer focus:outline-none">
                 <Avatar {...resProps} />
@@ -14,7 +14,7 @@ function AvataDropdown({...resProps}) {
 
 
 
-            <MenuItems className="absolute right-0 mt-2 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <MenuItems className="absolute  right-0 mt-2 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
                 <div className="py-1">
                     <MenuItem className="hover:bg-gray-200">
 
