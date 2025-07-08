@@ -15,7 +15,7 @@ import useUserStore from "../stores/userStore";
      
   },[communityname,commu])
   
-
+ console.log(community)
   if(!community){
       navitgate("/", { replace: true })
     }

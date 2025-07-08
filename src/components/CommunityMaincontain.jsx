@@ -4,7 +4,7 @@ import ProfilecCommu from "./ProfileCommu"
 import CommunitySidebar from "./sidebar/CommunitySidebar"
 import useUserStore from "../stores/userStore"
 import { userApi } from "../api/userapi"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 function CommunityMaincontain() {
  const community = useCommuStore(state=>state.community)
  const member = useCommuStore(state=>state.member)
@@ -14,6 +14,7 @@ const token = useUserStore(state=>state.token)
 const fecthCommu = useUserStore(state=>state.actionfecthCommu)
 const fecthcommuinfo = useCommuStore(state=>state.actionfecthinfo)
 const {communityname} = useParams()
+const navigate = useNavigate()
 console.log(community)
 
 const hdlJoin =async (usertoken)=> {
@@ -35,7 +36,9 @@ const hdlUnjoin =async (usertoken)=> {
  await fecthCommu()
 
 } 
-
+const hdlmod = () =>{
+  navigate(`/mod/members/${communityname}`)
+}
 
 
   return (
@@ -59,7 +62,7 @@ const hdlUnjoin =async (usertoken)=> {
       
          
           <div className="relative top-1  ">
-       {(memberrole=="ADMIN"||memberrole=="MODERATOR")&&<Button>
+       {(memberrole=="ADMIN"||memberrole=="MODERATOR")&&<Button onClick={hdlmod}>
           Moderation
         </Button>}
     { (memberrole!="GUEST")  && <Button>

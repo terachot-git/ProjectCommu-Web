@@ -16,11 +16,16 @@ import useUserStore from "../stores/userStore";
      
   },[communityname,commu])
   
+   if (!community) {
+    return null; 
+  }
 
-  if(!community&&memberrole!="ADMIN"){
+  if(!community||memberrole!="ADMIN"){
+      
       navitgate("/", { replace: true })
+       return null; 
     }
-
+ 
   return (
     <>
     <Header/>
