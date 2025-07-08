@@ -39,9 +39,9 @@ const hdlUnjoin =async (usertoken)=> {
 
   return (
     <div className="h-[400vh]">
-    <div className=" left-1/16 w-12/16 top-[78px] relative   mx-auto h-full">
+    <div className=" left-3/16 top-[50px] relative  w-12/16   h-full">
          <div
-                        className='top-10 left-24 z-10 relative shrink-0  bg-gray-200 text-gray-600 w-[1200px] h-[250px]'
+                        className='top-10 left-6 z-10 relative shrink-0  bg-gray-200 text-gray-600  h-[250px]'
                     >
 
 
@@ -52,7 +52,7 @@ const hdlUnjoin =async (usertoken)=> {
                         />}
 
                     </div>
-        <div className="pt-6 px-28 flex items-center justify-between  ">
+        <div className="pt-6 px-10 flex items-center justify-between  ">
           <ProfilecCommu size="lg" community={community} textsize="lg" src={community?.communityIcon} />
           <div className="relative top-1 ">
           <p className="relative top-2 text-2xl font-bold">Mod Members</p>

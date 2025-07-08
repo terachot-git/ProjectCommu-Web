@@ -5,19 +5,16 @@ import CommunitySidebar from "./sidebar/CommunitySidebar"
 import useUserStore from "../stores/userStore"
 import { userApi } from "../api/userapi"
 import { useParams } from "react-router"
-import { useEffect } from "react"
 function CommunityMaincontain() {
  const community = useCommuStore(state=>state.community)
  const member = useCommuStore(state=>state.member)
-  const memberrole = useCommuStore(state=>state.memberrole)
-  const user = useUserStore(state=>state.user)
-  const token = useUserStore(state=>state.token)
-  const fecthCommu = useUserStore(state=>state.actionfecthCommu)
-  const fecthcommuinfo = useUserStore(state=>state.actionfecthinfo)
-  const {communityname} = useParams()
+const memberrole = useCommuStore(state=>state.memberrole)
+const user = useUserStore(state=>state.user)
+const token = useUserStore(state=>state.token)
+const fecthCommu = useUserStore(state=>state.actionfecthCommu)
+const fecthcommuinfo = useCommuStore(state=>state.actionfecthinfo)
+const {communityname} = useParams()
 console.log(community)
-console.log(member)
-console.log(memberrole)
 
 const hdlJoin =async (usertoken)=> {
   console.log(token)
@@ -27,6 +24,7 @@ const hdlJoin =async (usertoken)=> {
 			}
 		})
   await fecthCommu()
+ 
 }
 const hdlUnjoin =async (usertoken)=> {
   await userApi.delete(`/community/${communityname}`,{
@@ -35,15 +33,16 @@ const hdlUnjoin =async (usertoken)=> {
 			}
 		})
  await fecthCommu()
+
 } 
 
 
 
   return (
     <div className="h-[400vh]">
-    <div className=" left-1/16 top-[78px] relative  w-12/16  mx-auto h-full">
+    <div className=" left-3/16 top-[50px] relative  w-12/16 h-full">
          <div
-                        className='top-10  z-10 relative shrink-0  bg-gray-200 text-gray-600 w-[1200px] h-[250px]'
+                        className='top-10 left-6 z-10 relative shrink-0  bg-gray-200 text-gray-600  h-[250px]'
                     >
 
 
@@ -54,9 +53,12 @@ const hdlUnjoin =async (usertoken)=> {
                         />}
 
                     </div>
-        <div className="pt-6 px-28 flex items-center justify-between flex-nowrap w-[1200px] ">
-          <ProfilecCommu size="lg" community={community} textsize="lg" src={community?.communityIcon} />
-          <div className="relative top-1 =  ">
+        <div className="pt-6 px-10 flex items-center justify-between ">
+      
+           <ProfilecCommu size="lg" community={community} textsize="lg" src={community?.communityIcon} />
+      
+         
+          <div className="relative top-1  ">
        {(memberrole=="ADMIN"||memberrole=="MODERATOR")&&<Button>
           Moderation
         </Button>}
