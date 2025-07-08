@@ -5,7 +5,7 @@ import CommunitySidebar from "./sidebar/CommunitySidebar"
 import useUserStore from "../stores/userStore"
 import { userApi } from "../api/userapi"
 import { useParams } from "react-router"
-function CommunityMaincontain() {
+function ModMemberMaincontain() {
 const community = useCommuStore(state=>state.community)
 const member = useCommuStore(state=>state.member)
 const memberrole = useCommuStore(state=>state.memberrole)
@@ -55,24 +55,13 @@ const hdlUnjoin =async (usertoken)=> {
         <div className="pt-6 px-28 flex items-center justify-between  ">
           <ProfilecCommu size="lg" community={community} textsize="lg" src={community?.communityIcon} />
           <div className="relative top-1 ">
-       {(memberrole=="ADMIN"||memberrole=="MODERATOR")&&<Button>
-          Moderation
-        </Button>}
-    { (memberrole!="GUEST")  && <Button>
-            + post
-       </Button>}
-            { user && (memberrole!="GUEST"&&memberrole!="ADMIN")  &&<Button onClick={()=>hdlUnjoin(token)}>
-            Joined
-          </Button>}
-            { user && (memberrole=="GUEST"&&memberrole!="ADMIN") &&<Button onClick={()=>hdlJoin(token)}>
-            Join
-          </Button>}
+          <p className="relative top-2 text-2xl font-bold">Mod Members</p>
           </div>
         </div>
         <div className="border-t border-gray-300 my-4 "></div>
-        <CommunitySidebar/>
+    
       </div>
     </div>
   )
 }
-export default CommunityMaincontain
+export default ModMemberMaincontain

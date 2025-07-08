@@ -7,6 +7,8 @@ import Me from '../pages/Me'
 import Home from '../pages/Home'
 import Communitylayouts from '../layouts/Communitylayouts'
 import Community from '../pages/Community'
+import Memberslayouts from '../layouts/Memberslayouts'
+import Members from '../pages/Members'
 
 
 const guestRouter = createBrowserRouter([
@@ -37,6 +39,15 @@ const userRouter = createBrowserRouter([
 		children: [
 			{ index: true, element: <Community /> }
 		]
+		
+	},
+	{
+		path: '/mod/members/:communityname',
+		element: <Memberslayouts />,
+		children: [
+			{ index: true, element: <Members /> }
+		]
+		
 	},
 	{ path: '*', element: <Navigate to='/' /> }
 
