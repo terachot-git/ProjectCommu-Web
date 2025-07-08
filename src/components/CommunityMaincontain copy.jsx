@@ -5,16 +5,14 @@ import CommunitySidebar from "./sidebar/CommunitySidebar"
 import useUserStore from "../stores/userStore"
 import { userApi } from "../api/userapi"
 import { useParams } from "react-router"
-import { useEffect } from "react"
 function CommunityMaincontain() {
- const community = useCommuStore(state=>state.community)
- const member = useCommuStore(state=>state.member)
-  const memberrole = useCommuStore(state=>state.memberrole)
-  const user = useUserStore(state=>state.user)
-  const token = useUserStore(state=>state.token)
-  const fecthCommu = useUserStore(state=>state.actionfecthCommu)
-  const fecthcommuinfo = useUserStore(state=>state.actionfecthinfo)
-  const {communityname} = useParams()
+const community = useCommuStore(state=>state.community)
+const member = useCommuStore(state=>state.member)
+const memberrole = useCommuStore(state=>state.memberrole)
+const user = useUserStore(state=>state.user)
+const token = useUserStore(state=>state.token)
+const fecthCommu = useUserStore(state=>state.actionfecthCommu)
+const {communityname} = useParams()
 console.log(community)
 console.log(member)
 console.log(memberrole)

@@ -1,5 +1,5 @@
 import { HomeIcon, PlusIcon } from "lucide-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router"
 import CreateCommunityModal from "../modal/CreateCommunityModal";
 import useUserStore from "../../stores/userStore";
