@@ -25,12 +25,12 @@ const CreateCommunityModal = ({isModalOpen,setIsOpen}) => {
   });
 
   const handleNext = async () => {
-    const fieldsToValidate = step === 1 ? ['communityname'] : [];
-    const isValid = fieldsToValidate.length > 0 ? await trigger(fieldsToValidate) : true;
+    // const fieldsToValidate = step === 1 ? ['communityname'] : [];
+    // const isValid = fieldsToValidate.length > 0 ? await trigger(fieldsToValidate) : true;
 
-    if (isValid) {
+    // if (isValid) {
       setStep(step + 1);
-    }
+    // }
   };
 
   const handlePrev = () => setStep(step - 1);

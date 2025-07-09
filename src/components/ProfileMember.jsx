@@ -2,9 +2,9 @@ import Avatar from "./Avatar"
 import useUserStore from "../stores/userStore";
 
 const sizeClasses = {
-  sm: 'px-1 text-xl',
-  md: 'px-2 text-3xl',
-  lg: 'px-4 text-6xl',
+   sm: 'px-1 text-md',
+  md: 'px-2 text-xl',
+  lg: 'px-4 text-3xl',
 };
 
 const shadowActive = {
@@ -14,15 +14,15 @@ const shadowActive = {
 function ProfilecMember({community,textsize="md",shadow='none',member,...resProps}) {
   const user = useUserStore(state=>state.user)
   let src
-  console.log(member)
-  console.log(community)
+  // console.log(member)
+  // console.log(community)
   if (member?.memberImage){
     src = member?.memberImage
   }
   else{
     src = community?.membersImage
   }
-  console.log(member?.membername )
+  // console.log(member?.membername )
   return (
     <div className="flex items-center z-20">
         <Avatar {...resProps} src={src}/>

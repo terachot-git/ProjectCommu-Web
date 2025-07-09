@@ -1,8 +1,8 @@
 import Avatar from "./Avatar"
 const sizeClasses = {
-  sm: 'px-1 text-xl',
-  md: 'px-2 text-3xl',
-  lg: 'px-4 text-6xl',
+  sm: 'px-1 text-md',
+  md: 'px-2 text-xl',
+  lg: 'px-4 text-3xl',
 };
 
 function Profile({user,textsize="md",...resProps}) {

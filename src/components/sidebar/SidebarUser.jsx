@@ -32,8 +32,8 @@ function SidebarUser() {
 						{user&&<div onClick={openModal} className="w-full hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
 						
 							<div className="flex items-center ">
-								<PlusIcon className="w-10 h-10 " />
-								<p className="font-bold text-2xl px-2">Create community</p>
+								<PlusIcon className="w-8 h-8 " />
+								<p className="font-bold text-xl px-2">Create community</p>
 							</div>
 						</div>}
 						{commu.map(el => {

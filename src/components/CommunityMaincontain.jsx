@@ -65,7 +65,7 @@ const hdlmod = () =>{
        {(memberrole=="ADMIN"||memberrole=="MODERATOR")&&<Button onClick={hdlmod}>
           Moderation
         </Button>}
-    { (memberrole!="GUEST")  && <Button>
+    { (user&&memberrole!="GUEST")  && <Button>
             + post
        </Button>}
             { user && (memberrole!="GUEST"&&memberrole!="ADMIN")  &&<Button onClick={()=>hdlUnjoin(token)}>
