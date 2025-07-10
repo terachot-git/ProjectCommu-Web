@@ -6,9 +6,9 @@ function AvataDropdown({...resProps}) {
   
     const logout = useUserStore(state=>state.logout)
     return (
-        <Menu as="div" className="relative inline-block text-left">
+        <Menu as="div" className="relative inline-block text-left top-2 right-2">
 
-            <MenuButton className="hover:cursor-pointer focus:outline-none">
+            <MenuButton className="hover:cursor-pointer focus:outline-none ">
                 <Avatar {...resProps} />
             </MenuButton>
 

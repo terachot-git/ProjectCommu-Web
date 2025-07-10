@@ -17,3 +17,6 @@ export const createCommuSchema = object({
 })
 
 
+export const postSchema = object().shape({
+    description:string().required('กรุณาใส่คำอธิบายโพสต์').max(280,'คำอธิบายโพสต์ต้องมีความยาวไม่เกิน 280 ตัวอักษร'),
+});

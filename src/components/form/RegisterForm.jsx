@@ -42,21 +42,21 @@ const { handleSubmit, register, formState: { errors, isSubmitting }, reset, } = 
 											placeholder='Username'
 											{...register('username')}
 										/>
-										{!errors.username?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
+										{!errors.username?.message && <p className='text-xs text-transparent select-none'>placeholder</p>}
 										{errors.username?.message && <p className='text-xs text-red-500'>{errors.username.message}</p>}
 										<input type='password'
 											className='input w-full h-8 px-2 bg-gray-100 shadow-md '
 											placeholder='password'
 											{...register('password')}
 										/>
-										{!errors.password?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
+										{!errors.password?.message && <p className='text-xs text-transparent select-none'>placeholder</p>}
 										{errors.password?.message && <p className='text-xs text-red-500'>{errors.password.message}</p>}
 										<input type='password'
 											className='input w-full h-8 px-2 bg-gray-100 shadow-md '
 											placeholder='confirmpassword'
 											{...register('confirmPassword')}
 										/>
-										{!errors.confirmPassword?.message && <p className='text-xs text-transparent select-none'>{'for space'}</p>}
+										{!errors.confirmPassword?.message && <p className='text-xs text-transparent select-none'>placeholder</p>}
 										{errors.confirmPassword?.message && <p className='text-xs text-red-500'>{errors.confirmPassword.message}</p>}
 
 										{!isSubmitting && <div className='self-end'><Button onClick={handleSubmit(hdlRegister)}>Register</Button></div>}

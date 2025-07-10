@@ -17,7 +17,7 @@ function SidebarUser() {
 
 	return (
 		<>
-			<div className='fixed top-[78px] h-full w-3/16  overflow-auto flex flex-col  min-w-[220px]  border-r-1 border-gray-200'>
+			<div className='hidden  xl:flex fixed top-[78px] h-full w-3/16  overflow-auto  flex-col  border-r-1 border-gray-200'>
 				<Link to="/" className="w-full hover:bg-gray-200 p-2 h-[64]">
 					<div className="flex items-center">
 						<HomeIcon className="w-12 h-12 " />
