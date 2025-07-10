@@ -1,24 +1,19 @@
 import useCommuStore from "../stores/communityStore"
 import Button from "./Button"
 import ProfilecCommu from "./ProfileCommu"
-import CommunitySidebar from "./sidebar/CommunitySidebar"
 import useUserStore from "../stores/userStore"
-import { userApi } from "../api/userapi"
 import { useParams } from "react-router"
 import { useEffect, useState } from "react"
 import { modApi } from "../api/modapi"
-import Members from "../pages/Members"
 import ProfilecMember from "./ProfileMember"
 import Profile from "./Profile"
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react"
-import { Ellipsis } from "lucide-react"
+
 function ModMemberMaincontain() {
   const community = useCommuStore(state => state.community)
-  const member = useCommuStore(state => state.member)
-  const memberrole = useCommuStore(state => state.memberrole)
-  const user = useUserStore(state => state.user)
+
   const token = useUserStore(state => state.token)
-  const fecthCommu = useUserStore(state => state.actionfecthCommu)
+
   const { communityname } = useParams()
   // console.log(community)
   // console.log(member)
@@ -39,7 +34,7 @@ function ModMemberMaincontain() {
           isChange: false
         };
       })
-
+      // console.log(newdata)
       SetAllmember(newdata);
     } catch (error) {
       console.error("Error fetching members:", error);
@@ -65,7 +60,29 @@ function ModMemberMaincontain() {
     );
 
   };
-
+  const handleDelmember = async (memberid) => {
+    await modApi.delete(`/members/${communityname}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }, data: { memberid: memberid }
+    })
+    await fetchData()
+  }
+  const handleSaveRole = async (memberIndex, memberid) => {
+    const newRole = allmember[memberIndex].role
+    console.log(newRole)
+    console.log(memberid)
+    await modApi.patch(`/members/${communityname}`, { memberid: memberid, role: newRole }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    SetAllmember(currentMembers => {
+      currentMembers[memberIndex].isChange = false
+      return [...currentMembers]
+    }
+    )
+  }
   return (
     <div className="h-[400vh]">
       <div className=" left-3/16 top-[50px] relative  w-12/16   h-full">
@@ -151,12 +168,12 @@ function ModMemberMaincontain() {
                   </div>
                   <div className="relative  self-end left-1/12 bottom-2">
 
-                    <Button>Delete</Button>
+                    <Button onClick={() => handleDelmember(el.userId)}>Delete</Button>
                     {el.isChange &&
-                      <Button>Save</Button>
+                      <Button onClick={() => handleSaveRole(index, el.userId)}>Save</Button>
 
                     }
-                    
+
                   </div>
                 </div>
 
