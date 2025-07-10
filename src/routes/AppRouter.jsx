@@ -9,6 +9,9 @@ import Communitylayouts from '../layouts/Communitylayouts'
 import Community from '../pages/Community'
 import Memberslayouts from '../layouts/Memberslayouts'
 import Members from '../pages/Members'
+import PostPendingpage from '../pages/PostPendingpage'
+import PostAppovepage from '../pages/PostApprovepage'
+import ModPostslayouts from '../layouts/ModPostslayouts'
 
 
 const guestRouter = createBrowserRouter([
@@ -39,7 +42,7 @@ const userRouter = createBrowserRouter([
 		children: [
 			{ index: true, element: <Community /> }
 		]
-		
+
 	},
 	{
 		path: '/mod/members/:communityname',
@@ -47,8 +50,18 @@ const userRouter = createBrowserRouter([
 		children: [
 			{ index: true, element: <Members /> }
 		]
-		
+
 	},
+	 {
+                path: '/mod/posts/:communityname',
+                element: <ModPostslayouts />,
+                children: [
+                    { index: true, element: <Navigate to="pending" replace /> },
+                    { path: 'pending', element: <PostPendingpage /> },
+                    { path: 'approve', element: <PostAppovepage /> },
+                ],
+            },
+	
 	{ path: '*', element: <Navigate to='/' /> }
 
 
