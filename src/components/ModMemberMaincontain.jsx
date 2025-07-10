@@ -84,7 +84,7 @@ function ModMemberMaincontain() {
     )
   }
   return (
-    <div className="h-[400vh]">
+    <div className="h-fit">
       <div className=" left-3/16 top-[50px] relative  w-12/16   h-full">
         <div
           className='top-10 left-6 z-10 relative shrink-0  bg-gray-200 text-gray-600  h-[250px]'

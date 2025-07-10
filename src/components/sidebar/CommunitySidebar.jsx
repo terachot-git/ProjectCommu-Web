@@ -14,10 +14,9 @@ function CommunitySidebar() {
         <p className="text-md break-words text-violet-500">{community?.communitydetail}</p>
         <div className="border-t border-gray-400 my-4 "></div>
         <p className="text-2xl font-bold text-violet-500">Membersname</p>
-        <div className="flex justify-between">
+        <div className="flex justify-between text-violet-500">
 
           <ProfilecMember member={member} community={community} size="sm" textsize="sm" />
-
           { user && memberrole!="GUEST" && <Button>
             Edit
           </Button>
