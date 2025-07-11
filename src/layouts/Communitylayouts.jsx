@@ -10,6 +10,7 @@ import useUserStore from "../stores/userStore";
   const navitgate = useNavigate()
   const commu = useUserStore(state=>state.commu)
   const token = useUserStore(state=>state.token)
+  
   useEffect( ()=>{
      fecthinfo(communityname,token)
      

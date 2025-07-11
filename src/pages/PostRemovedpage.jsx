@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react"
 import { communityApi } from "../api/communityapi"
 import useUserStore from "../stores/userStore"
-import PostItem from "../components/forPost/PostItem"
+import PostItemRemoved from "../components/forPost/PostItemRemoved"
 import { useParams } from "react-router"
 
 
-
-function PostApprovepage() {
+function PostRemovedpage() {
   const token = useUserStore(state => state.token)
-  const { communityname } = useParams()
+    const { communityname } = useParams()
   const [allPosts,SetAllPosts] = useState([])
-  const fecthApprovedPosts = async () => {
+  const fecthPendingPosts = async () => {
     const allpostsinfo =  await communityApi.get(`/posts/${communityname}`, {
       params: {
-        poststatus: 'APPROVED'
+        poststatus: 'REMOVED'
       },
       headers: {
         Authorization: `Bearer ${token}`,
@@ -24,7 +23,7 @@ function PostApprovepage() {
 
   }
   useEffect(()=>{
-  fecthApprovedPosts()
+  fecthPendingPosts()
   },[])
 
     // console.log(allPosts)
@@ -33,7 +32,7 @@ function PostApprovepage() {
 
    {
     allPosts.length>0 && allPosts.map(el => (
-          <PostItem key={el.id} post={el} fetchPost={fecthApprovedPosts} />
+          <PostItemRemoved key={el.id} post={el} fetchPost={fecthPendingPosts} />
         ))
     }
 
@@ -41,4 +40,4 @@ function PostApprovepage() {
     </div>
   )
 }
-export default PostApprovepage
+export default PostRemovedpage

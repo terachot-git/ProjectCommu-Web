@@ -137,7 +137,7 @@ function CreatePostForm({ closeModal, onSuccess }) {
                         <img
                             src={preview}
                             alt="พรีวิวรูปภาพ"
-                            className="max-h-[400px] object-cover rounded-lg shadow-md"
+                            className="max-h-[300px] object-cover rounded-lg shadow-md"
                         />
                         <p className="text-gray-500 text-sm mt-4">ลากไฟล์อื่นมาวาง หรือคลิกเพื่อเปลี่ยนรูป</p>
                     </div>

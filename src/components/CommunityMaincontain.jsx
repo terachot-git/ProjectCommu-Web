@@ -45,8 +45,9 @@ function CommunityMaincontain() {
 
   }
   const hdlmod = () => {
-    navigate(`/mod/members/${communityname}`)
+    navigate(`/mod/posts/${communityname}`)
   }
+ 
 
 
   return (

@@ -55,7 +55,15 @@ function ModSidebar() {
 
 				<div className="w-full  p-2 h-[64]">
 					<div className="flex  flex-col items-start">
-						<p className="font-bold text-3xl px-2 pb-4">Moderation Menu</p>
+						<p className="font-bold text-3xl px-2 pb-4">TOOL</p>
+							<div className="w-full text-2xl font-bold hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
+							<Link to={`/mod/posts/${communityname}`}>
+								<div className="flex justify-between items-baseline">
+									<p>Mod Posts</p>
+									<StickyNote /> 
+									</div>
+							</Link>
+						</div>
 						<div className="w-full text-2xl font-bold hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
 							<Link to={`/mod/members/${communityname}`}>
 								<div className="flex justify-between items-baseline">
@@ -64,14 +72,7 @@ function ModSidebar() {
 									</div>
 							</Link>
 						</div>
-						<div className="w-full text-2xl font-bold hover:bg-gray-200 p-2 h-[60] hover:cursor-pointer">
-							<Link to={`/mod/posts/${communityname}`}>
-								<div className="flex justify-between items-baseline">
-									<p>Mod Posts</p>
-									<StickyNote /> 
-									</div>
-							</Link>
-						</div>
+					
 					</div>
 				</div>
 			</div>

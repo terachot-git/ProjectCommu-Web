@@ -12,6 +12,7 @@ import Members from '../pages/Members'
 import PostPendingpage from '../pages/PostPendingpage'
 import PostAppovepage from '../pages/PostApprovepage'
 import ModPostslayouts from '../layouts/ModPostslayouts'
+import PostRemovedpage from '../pages/PostRemovedpage'
 
 
 const guestRouter = createBrowserRouter([
@@ -59,6 +60,7 @@ const userRouter = createBrowserRouter([
                     { index: true, element: <Navigate to="pending" replace /> },
                     { path: 'pending', element: <PostPendingpage /> },
                     { path: 'approve', element: <PostAppovepage /> },
+					 { path: 'removed', element: <PostRemovedpage /> }
                 ],
             },
 	

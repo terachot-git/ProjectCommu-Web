@@ -1,7 +1,6 @@
 @import "tailwindcss";
 html {
   scrollbar-gutter: stable;
+ 
 }
-.compensate-scrollbar {
-  padding-right: calc(100vw - 100%);
-}
+

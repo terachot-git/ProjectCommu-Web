@@ -9,7 +9,7 @@ function Header () {
   
   return (
     <>
-    <div className="z-30 flex justify-items-center justify-between px-4 py-1 bg-violet-50 w-full fixed compensate-scrollbar">
+    <div className="z-30 flex justify-items-center justify-between px-4 py-1 bg-violet-50 w-full fixed ">
       <Weblogo className="w-49 h-16"/>
       {user&& <AvataDropdown src={user.profileImage} ring="active"/>} 
      
