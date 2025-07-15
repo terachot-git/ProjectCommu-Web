@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { communityApi } from "../../api/communityapi"
 
 import useCommuStore from "../../stores/communityStore"
-import useUserStore from "../../stores/userStore"
+
 import PostItem from "../../components/forPost/PostItem"
 import { useParams } from "react-router"
 import PostItemPending from "./PostItemPending"
@@ -11,7 +11,6 @@ import PostItemPending from "./PostItemPending"
 
 function PostcontainInCommu() {
   const { communityname } = useParams()
-  const token = useUserStore(state => state.token)
   const memberrole = useCommuStore(state => state.memberrole)
   const [allApprovedPosts, SetAllApprovedPosts] = useState([])
   const [allPendingPosts, SetAllPendingPosts] = useState([])

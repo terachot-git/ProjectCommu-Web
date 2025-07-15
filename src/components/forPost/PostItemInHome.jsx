@@ -1,58 +1,46 @@
-import ProfilecMember from "../ProfileMember"
+
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react"
 import { Ellipsis } from 'lucide-react';
 import useUserStore from "../../stores/userStore";
 import { modApi } from "../../api/modapi";
 import { useParams } from "react-router";
 import useCommuStore from "../../stores/communityStore";
-function PostItem({ post , fetchPost }) {
+import ProfilecCommu from "../ProfileCommu";
+function PostItemInHome({ post, fetchPost }) {
   const user = useUserStore(state => state.user)
   const token = useUserStore(state => state.token)
-  const memberrole = useCommuStore(state=>state.memberrole)
-   const { communityname } = useParams()
+  const memberrole = useCommuStore(state => state.memberrole)
+  const { communityname } = useParams()
   console.log(post)
 
-   const hdlRemove = async (postid) => {
-   const res = await modApi.patch(`/posts/${communityname}`,{postid:postid,poststatus:"REMOVED"}, {headers: {
-        Authorization: `Bearer ${token}`,
-      }})
-      console.log(res)
-      fetchPost()
-  }
+
   return (
     <div className="w-[600px] px-4 py-4 text-violet-500 bg-pink-50  border-gray-300 border-1 mx-auto rounded-xl shadow-xl space-y-3 "  >
       <div className="flex justify-between">
-        <ProfilecMember member={post?.authorMembership} community={post?.authorMembership?.community} size="sm" textsize="sm" />    
+        <ProfilecCommu src={post?.authorMembership?.community.communityIcon} community={post?.authorMembership?.community} size="sm" textsize="sm" />
         <Menu as="div" className="relative inline-block text-left  ">
           <MenuButton className="hover:cursor-pointer focus:outline-none hover:scale-125 ">
             <Ellipsis />
           </MenuButton>
-          <MenuItems className="absolute  right-0 mt-2 w-fit  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none   ">
+          {(user.id == post?.authorUserId) && <MenuItems className="absolute  right-0 mt-2 w-fit  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none   ">
             <div className="py-1 ">
-           
 
-           { ((memberrole=="ADMIN")||(memberrole=="MODERATOR")) &&  <MenuItem className="hover:bg-gray-200 cursor-pointer">
-                <div className='text-gray-700 block px-4 py-2 text-xs' onClick={()=>hdlRemove(post.id)}>
-                  Remove
-                </div>
-              </MenuItem>}
 
-              {(user.id == post?.authorUserId) && <MenuItem className="hover:bg-gray-200 cursor-pointer">
+              <MenuItem className="hover:bg-gray-200 cursor-pointer">
                 <div className='text-gray-700 block px-4 py-2 text-xs' >
                   Edit
                 </div>
               </MenuItem>
 
-              }
 
 
-              {(user.id == post?.authorUserId) && <MenuItem className="hover:bg-gray-200 cursor-pointer" >
+              <MenuItem className="hover:bg-gray-200 cursor-pointer" >
                 <div className='text-gray-700 block px-4 py-2 text-xs' >
                   Delete
                 </div>
-              </MenuItem>}
+              </MenuItem>
             </div>
-          </MenuItems>
+          </MenuItems>}
 
         </Menu>
       </div>
@@ -68,4 +56,4 @@ function PostItem({ post , fetchPost }) {
 
   )
 }
-export default PostItem
+export default PostItemInHome

@@ -13,6 +13,7 @@ import LoadingModal from './LoadingModal';
 const CreateCommunityModal = ({ isModalOpen, setIsOpen }) => {
   const [step, setStep] = useState(1);
   const token = useUserStore(state => state.token)
+   const fecthCommu = useUserStore(state => state.actionfecthCommu)
   const {
     register,
     control,
@@ -56,7 +57,8 @@ const CreateCommunityModal = ({ isModalOpen, setIsOpen }) => {
       },
 
     })
-    console.log(res)
+    // console.log(res)
+    await fecthCommu()
     closeModal();
   };
 

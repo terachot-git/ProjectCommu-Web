@@ -110,14 +110,14 @@ function CreatePostForm({ closeModal, onSuccess }) {
 
         <form className="space-y-4">
             <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                <label  className="block text-sm font-medium text-gray-700 mb-1">
                     คำอธิบายโพสต์
                 </label>
                 <textarea
                     {...register('description')}
                     id="description"
                     rows="4"
-                    className={`w-full p-2 border rounded-md ${errors?.description?.message ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full p-2 border rounded-md resize-none ${errors?.description?.message ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="อยากอวดอะไรดี..."
                 />
                 {!errors.description?.message && <p className='text-sm text-transparent select-none'>placeholder</p>}

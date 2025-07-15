@@ -47,8 +47,8 @@ function ModMemberMaincontain() {
 
   }, [])
   const ALL_ROLES = [
-    { id: 'MODERATOR', name: 'MODERATOR' },
-    { id: 'MEMBER', name: 'MEMBER' },
+    { id: 'MODERATOR' },
+    { id: 'MEMBER' },
   ];
   const handleRoleChange = (memberIndex, newRole) => {
     SetAllmember(currentMembers => {
