@@ -14,7 +14,6 @@ function Login() {
 	const login = useUserStore(state => state.login)
 	const [modalIsOpen, setModalIsOpen] = useState(false);
     const token = useUserStore(state=>state.token)
-	const fetchcommu = useUserStore(state=>state.actionfecthCommu)
 	const openModal = () => setModalIsOpen(true);
 	const closeModal = () => setModalIsOpen(false);
 
@@ -28,7 +27,6 @@ function Login() {
 			console.log(data)
 			await new Promise(resolve => setTimeout(resolve, 1000))
 			const resp = await login(data)
-             await fetchcommu(token)
 			toast.success(resp.data.message)
 			// await toast.success(`Welcom ${user.username}`)
 

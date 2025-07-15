@@ -34,15 +34,14 @@ function PostcontainInCommu() {
     SetAllPendingPosts(allpostsinfo.data.posts)
 
   }
-
-
-
-  useEffect(() => {
-    fecthApprovedPosts()
-    
+const fecththispage = () => {
+      fecthApprovedPosts()
       fecthPendingPosts()
   
-  }, [communityname])
+  }
+
+
+  useEffect( ()=>{fecththispage()}, [communityname])
 
 
 
@@ -50,7 +49,7 @@ function PostcontainInCommu() {
     <div className="    h-fit flex flex-col gap-4">
       {
         (allPendingPosts.length > 0 && (memberrole == "ADMIN" || memberrole == "MODERATOR"))&& allPendingPosts.map(el => (
-          <PostItemPending key={el.id} post={el} fetchPost={fecthPendingPosts} />
+          <PostItemPending key={el.id} post={el} fetchPost={fecththispage} />
         ))
       }
 

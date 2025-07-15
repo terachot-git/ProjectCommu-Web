@@ -26,7 +26,6 @@ function CommunityMaincontain() {
   console.log(memberrole)
 
   const hdlJoin = async (usertoken) => {
-    console.log(token)
     await userApi.post(`/community/${communityname}`, null, {
       headers: {
         Authorization: `Bearer ${usertoken}`,

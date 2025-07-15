@@ -7,6 +7,8 @@ import ProfilecCommu from "../ProfileCommu";
 function SidebarUser() {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const user = useUserStore(state => state.user)
+	const token = useUserStore(state => state.token)
+	const fecthCommu = useUserStore(state=>state.actionfecthCommu)
 	const commu = useUserStore(state => state.commu)
 	// console.log(user)
 	// console.log(commu)
@@ -14,7 +16,7 @@ function SidebarUser() {
 		e.stopPropagation();
 		setModalIsOpen(true);
 	}
-
+    useEffect(()=>{fecthCommu(token)},[])
 	return (
 		<>
 			<div className='hidden  xl:flex fixed top-[78px] h-full w-3/16  overflow-auto  flex-col  border-r-1 border-gray-200'>

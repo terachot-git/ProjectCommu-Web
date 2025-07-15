@@ -6,6 +6,7 @@ import { modApi } from "../../api/modapi";
 import { useParams } from "react-router";
 import useCommuStore from "../../stores/communityStore";
 import ProfilecCommu from "../ProfileCommu";
+import { userApi } from "../../api/userapi";
 function PostItemInHome({ post, fetchPost }) {
   const user = useUserStore(state => state.user)
   const token = useUserStore(state => state.token)
@@ -13,7 +14,15 @@ function PostItemInHome({ post, fetchPost }) {
   const { communityname } = useParams()
   console.log(post)
 
-
+ const hdlDelete = async (postid) => {
+      await userApi.delete(`/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }, data: { postid: postid }
+      })
+      await fetchPost()
+  
+    }
   return (
     <div className="w-[600px] px-4 py-4 text-violet-500 bg-pink-50  border-gray-300 border-1 mx-auto rounded-xl shadow-xl space-y-3 "  >
       <div className="flex justify-between">
@@ -35,7 +44,7 @@ function PostItemInHome({ post, fetchPost }) {
 
 
               <MenuItem className="hover:bg-gray-200 cursor-pointer" >
-                <div className='text-gray-700 block px-4 py-2 text-xs' >
+                <div className='text-gray-700 block px-4 py-2 text-xs' onClick={()=>hdlDelete(post.id)}>
                   Delete
                 </div>
               </MenuItem>
